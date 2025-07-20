@@ -13,8 +13,11 @@ void SearchTransaction() {
     cout << "||   BINARY SEARCH (TRANSACTION)      ||\n";
     cout << "========================================\n";
     cout << "Enter Transaction ID: ";
-    cin >> id;
-    cin.ignore(10000, '\n');
+    while (!(cin >> id)) {
+    			cout << left << setw(60) << " " << "Invalid input. Please enter an integer: ";
+    			cin.clear();
+    			cin.ignore(10000, '\n');
+    		}    cin.ignore(10000, '\n');
 
     int n = transactionQueue.size;
     Transaction* arr = new Transaction[n];
