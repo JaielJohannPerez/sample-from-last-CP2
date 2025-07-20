@@ -1,6 +1,6 @@
 void SearchTransaction() {
     system("CLS");
-    ProcessExpiredTransactions(); 
+    ProcessExpiredTransactions();
 
     if (transactionQueue.size == 0) {
         cout << "||  No transactions to search!         ||\n";
@@ -14,10 +14,10 @@ void SearchTransaction() {
     cout << "========================================\n";
     cout << "Enter Transaction ID: ";
     while (!(cin >> id)) {
-    			cout << left << setw(60) << " " << "Invalid input. Please enter an integer: ";
-    			cin.clear();
-    			cin.ignore(10000, '\n');
-    		}    cin.ignore(10000, '\n');
+        cout << left << setw(60) << " " << "Invalid input. Please enter an integer: ";
+        cin.clear();
+        cin.ignore(10000, '\n');
+    } 
 
     int n = transactionQueue.size;
     Transaction* arr = new Transaction[n];
@@ -25,7 +25,7 @@ void SearchTransaction() {
     for (int i = 0; i < n && temp; ++i, temp = temp->next) {
         arr[i] = temp->data;
     }
-    SortTransactionArray(arr, n, 1); 
+    SortTransactionArray(arr, n, 1);
 
     int left = 0, right = n - 1, idx = -1;
     while (left <= right) {
@@ -52,14 +52,14 @@ void SearchTransaction() {
     if (idx != -1) {
         Transaction& t = arr[idx];
         double elapsed = difftime(time(NULL), t.timestamp);
-        string status = (t.returned || elapsed >= 30.0) ? "Expired" : "Ongoing"; 
+        string status = (t.returned || elapsed >= 30.0) ? "Expired" : "Ongoing";
 
         cout << "|| "
-            << setw(6)  << t.id << " | "
-            << setw(7)  << t.firearmId << " | "
-            << setw(3)  << t.customerName << setw(16) << " | "
-            << setw(3)  << t.quantityRented << " | "
-            << setw(9)  << status << " ||\n";
+            << setw(6) << t.id << " | "
+            << setw(7) << t.firearmId << " | "
+            << setw(19) << t.customerName << " | "
+            << setw(3) << t.quantityRented << " | "
+            << setw(9) << status << " ||\n";
     }
     else {
         cout << "||       No matching transaction found.                  ||\n";
